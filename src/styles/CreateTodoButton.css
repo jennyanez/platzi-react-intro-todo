@@ -1,0 +1,25 @@
+.createTodoButton {
+    position: absolute;
+    right: 16px;
+    bottom: 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    background-color: #0FDD76;
+    border-radius: 999px;
+    width: 60px;
+    height: 60px;
+    border: none;
+    font-size: 40px;
+    line-height: 40px;
+    font-weight: 700;
+
+    transform: rotate(0);
+    transition: .3s ease;
+}
+
+.createTodoButton:hover {
+    transform: rotate(224deg);
+}

@@ -1,0 +1,25 @@
+.welcomeComponent {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+h1 {
+    color: #000;
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 42px;
+    margin: 0;
+}
+
+.welcome--user_picture {
+    width: 60px;
+    height: 60px;
+    background-image: url("../assets/2025_02_14_09_16_IMG_2245.JPG");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 999px;
+    border: 2px solid powderblue;
+}
