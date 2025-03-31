@@ -1,10 +1,11 @@
 import React from 'react'
 import '../styles/TodoSearch.css'
 
-export default function TodoSearch() {
-  const [searchValue, setSearchValue] = React.useState("");
+export default function TodoSearch({
+  searchValue, 
+  setSearchValue
+}) {
 
-  console.log("Los usuarios buscan TODOs de " + searchValue)
 
   return (
     <div className='todoSearchComponent'>
