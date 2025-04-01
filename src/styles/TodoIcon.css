@@ -1,0 +1,11 @@
+.Icon {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Icon img {
+    width: 24px;
+    height: 24px;
+}
