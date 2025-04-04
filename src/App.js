@@ -6,20 +6,45 @@ import { TodoItem } from './components/TodoItem';
 import {CreateTodoButton} from './components/CreateTodoButton';
 import { Welcome } from './components/Welcome';
 
-const defaultTodos = [
-  { text: 'Tomar curso de React.js', completed: true },
-  { text: 'Aprender IA', completed: false },
-  { text: 'Comprar regalos de cumple', completed: true },
-  { text: 'Llorar con la llorona', completed: false },
-  { text: 'Llorar mas', completed: false }
-];
+// const defaultTodos = [
+//   { text: 'Tomar curso de React.js', completed: true },
+//   { text: 'Aprender IA', completed: false },
+//   { text: 'Comprar regalos de cumple', completed: true },
+//   { text: 'Llorar con la llorona', completed: false },
+//   { text: 'Llorar mas', completed: false }
+// ];
+
+// localStorage.setItem('TODOS_V1', JSON.stringify(defaultTodos));
+// localStorage.removeItem('TODOS_V1')
+
+function useLocalStorage(itemName, initialValue){
+  const localStorageItem = localStorage.getItem(itemName)
+  let parsedItem
+
+  if(!localStorageItem){
+    localStorage.setItem(itemName, JSON.stringify([]) )
+    parsedItem = []
+  } else {
+    parsedItem = JSON.parse(localStorageItem)
+  }
+
+  const [item, setItem] = React.useState(parsedItem)
+
+  //esta funcion actualiza el estado y el local storage a la par
+  const saveItem = (newItem) => {
+    localStorage.setItem(itemName, JSON.stringify(newItem))
+    setItem(newItem)
+  }
+
+  return [item, saveItem];
+}
 
 function App() {
+
+  //estado de lista de todos, utilizando el hook de local storage para que sea este quien use el estado de React
+  const [todos, saveTodos] = useLocalStorage('TODOS_V1', []);
   //estado de buscar todo
   const [searchValue, setSearchValue] = React.useState("");
-
-  //estado de lista de todos
-  const [todos, setTodos] = React.useState(defaultTodos);
 
   //estados derivados
   const completedTodos = todos.filter(todo => !!todo.completed).length; // la doble negacion (!!) es para que el valor que devuelva el array sea convertido a boolean
@@ -39,7 +64,7 @@ function App() {
       (todo) => todo.text === text
     )
     todoListCopy[todoIndex].completed = true;
-    setTodos(todoListCopy);
+    saveTodos(todoListCopy);
   }
 
   const deleteTodo = (text) => {
@@ -48,7 +73,7 @@ function App() {
       (todo) => todo.text === text
     );
     todoListCopy.splice(todoIndex, 1)
-    setTodos(todoListCopy);
+    saveTodos(todoListCopy);
   }
 
   return (
