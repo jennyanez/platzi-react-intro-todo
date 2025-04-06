@@ -1,10 +1,7 @@
 import React from 'react';
-import { TodoCounter } from './components/TodoCounter';
-import { TodoSearch } from './components/TodoSearch';
-import { TodoList } from './components/TodoList';
-import { TodoItem } from './components/TodoItem';
-import {CreateTodoButton} from './components/CreateTodoButton';
-import { Welcome } from './components/Welcome';
+import { AppUI } from './AppUI';
+import { useLocalStorage } from './useLocalStorage';
+
 
 // const defaultTodos = [
 //   { text: 'Tomar curso de React.js', completed: true },
@@ -17,27 +14,6 @@ import { Welcome } from './components/Welcome';
 // localStorage.setItem('TODOS_V1', JSON.stringify(defaultTodos));
 // localStorage.removeItem('TODOS_V1')
 
-function useLocalStorage(itemName, initialValue){
-  const localStorageItem = localStorage.getItem(itemName)
-  let parsedItem
-
-  if(!localStorageItem){
-    localStorage.setItem(itemName, JSON.stringify([]) )
-    parsedItem = []
-  } else {
-    parsedItem = JSON.parse(localStorageItem)
-  }
-
-  const [item, setItem] = React.useState(parsedItem)
-
-  //esta funcion actualiza el estado y el local storage a la par
-  const saveItem = (newItem) => {
-    localStorage.setItem(itemName, JSON.stringify(newItem))
-    setItem(newItem)
-  }
-
-  return [item, saveItem];
-}
 
 function App() {
 
@@ -77,34 +53,16 @@ function App() {
   }
 
   return (
-    <>
-      <Welcome userName='Jenny' />
-      <TodoSearch
-        searchValue={searchValue}
-        setSearchValue={setSearchValue}
-       />
-
-      <TodoCounter 
-        completed={completedTodos} 
-        total={totalTodos}
-      />
-
-      <TodoList>
-        {searchedTodos.map(todo => (
-          <TodoItem 
-            key={todo.text} 
-            text={todo.text}
-            completed={todo.completed}
-            onComplete={() => completeTodo(todo.text)}
-            onDelete={() => deleteTodo(todo.text)}
-          />
-        ))}
-      </TodoList>
-
-      <CreateTodoButton />
-
-    </>
-  );
+    <AppUI
+      searchValue={searchValue}
+      setSearchValue={setSearchValue}
+      completedTodos={completedTodos}
+      totalTodos={totalTodos}
+      searchedTodos={searchedTodos}
+      completeTodo={completeTodo}
+      deleteTodo={deleteTodo}
+    />
+  )
 }
 
 
