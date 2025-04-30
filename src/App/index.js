@@ -2,6 +2,7 @@ import React from 'react';
 import { AppUI } from './AppUI';
 import { useLocalStorage } from './useLocalStorage';
 
+// localStorage.removeItem('TODOS_V1')
 
 // const defaultTodos = [
 //   { text: 'Tomar curso de React.js', completed: true },
@@ -12,13 +13,18 @@ import { useLocalStorage } from './useLocalStorage';
 // ];
 
 // localStorage.setItem('TODOS_V1', JSON.stringify(defaultTodos));
-// localStorage.removeItem('TODOS_V1')
+
 
 
 function App() {
 
   //estado de lista de todos, utilizando el hook de local storage para que sea este quien use el estado de React
-  const [todos, saveTodos] = useLocalStorage('TODOS_V1', []);
+  const {
+    item: todos, 
+    saveItem: saveTodos, 
+    loading,
+    error
+  } = useLocalStorage('TODOS_V1', []);
   //estado de buscar todo
   const [searchValue, setSearchValue] = React.useState("");
 
@@ -54,6 +60,8 @@ function App() {
 
   return (
     <AppUI
+      loading={loading}
+      error={error}
       searchValue={searchValue}
       setSearchValue={setSearchValue}
       completedTodos={completedTodos}

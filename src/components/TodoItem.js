@@ -1,7 +1,8 @@
 import React from 'react'
 import "../styles/TodoItem.css"
-import { DeleteIcon } from './DeleteIcon'
+import { DeleteIcon } from '../components/utils/DeleteIcon'
 import { TodoIcon } from './TodoIcon'
+
 
 export default function TodoItem(props) {
   return (
