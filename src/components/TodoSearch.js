@@ -1,11 +1,10 @@
 import React from 'react'
 import '../styles/TodoSearch.css'
+import { TodoContext } from './TodoContext';
 
-export default function TodoSearch({
-  searchValue, 
-  setSearchValue
-}) {
-
+export default function TodoSearch() {
+  const {searchValue,
+        setSearchValue} = React.useContext(TodoContext)
 
   return (
     <div className='todoSearchComponent'>
