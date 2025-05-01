@@ -12,7 +12,6 @@ export default function TodoItem(props) {
           <TodoIcon type={props.completed ? "check" : "circle"}
                     onClick={props.onComplete}
           />
-    
           <p 
             className={`TodoItem-p 
             ${props.completed && "TodoItem-p--complete"}`}

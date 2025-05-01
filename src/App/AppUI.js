@@ -36,7 +36,13 @@ function AppUI (
     
           <TodoList>
             {/* el && es el equivalente a un then */}
-            {loading && <TodosLoading />} 
+            {loading && 
+            <>
+              <TodosLoading />
+              <TodosLoading />
+              <TodosLoading />
+            </>
+            } 
             {error && <TodosError />}
             {(!loading && searchedTodos.length === 0) && <EmptyTodos />}
 
