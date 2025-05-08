@@ -14,6 +14,9 @@ function TodoProvider ({ children }) {
     //estado de buscar todo
     const [searchValue, setSearchValue] = React.useState("");
 
+    //estado para abrir el modal
+    const [openModal, setOpenModal] = React.useState(false)
+
     //estados derivados
     const completedTodos = todos.filter(todo => !!todo.completed).length; // la doble negacion (!!) es para que el valor que devuelva el array sea convertido a boolean
     const totalTodos = todos.length;
@@ -26,12 +29,21 @@ function TodoProvider ({ children }) {
         }
     );
 
+    const addTodo = (text) => {
+        const newTodos = [...todos]; //crea una copia del estado del array todos
+        newTodos.push({
+            text,
+            completed: false,
+        })
+        saveTodos(newTodos);
+    }
+
     const completeTodo = (text) => {
         const todoListCopy = [...todos]; //crea una copia del estado del array todos
         const todoIndex = todoListCopy.findIndex(
         (todo) => todo.text === text
         )
-        todoListCopy[todoIndex].completed = true;
+        todoListCopy[todoIndex].completed = !todoListCopy[todoIndex].completed;
         saveTodos(todoListCopy);
     }
 
@@ -54,7 +66,10 @@ function TodoProvider ({ children }) {
             totalTodos,
             searchedTodos,
             completeTodo,
-            deleteTodo
+            deleteTodo,
+            openModal, 
+            setOpenModal,
+            addTodo
         }}>
             {children}
         </TodoContext.Provider>
