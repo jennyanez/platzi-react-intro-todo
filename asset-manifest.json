@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/platzi-react-intro-todo/static/css/main.617be19a.css",
+    "main.js": "/platzi-react-intro-todo/static/js/main.6cb2dd0f.js",
+    "static/media/background.png": "/platzi-react-intro-todo/static/media/background.cfeca3b9edf4012b79b5.png",
+    "static/media/2025_02_14_09_16_IMG_2245.JPG": "/platzi-react-intro-todo/static/media/2025_02_14_09_16_IMG_2245.a84faf5f309738ce70c5.JPG",
+    "index.html": "/platzi-react-intro-todo/index.html",
+    "main.617be19a.css.map": "/platzi-react-intro-todo/static/css/main.617be19a.css.map",
+    "main.6cb2dd0f.js.map": "/platzi-react-intro-todo/static/js/main.6cb2dd0f.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.617be19a.css",
+    "static/js/main.6cb2dd0f.js"
+  ]
+}
